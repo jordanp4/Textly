@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     File created by the Android Action Bar Style Generator
+
+     Copyright (C) 2011 The Android Open Source Project
+     Copyright (C) 2012 readyState Software Ltd
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+  
+          http://www.apache.org/licenses/LICENSE-2.0
+  
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+
+-->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    
+
+    <style name="Theme.Textly" parent="@android:style/Theme.Holo.Light">
+        <item name="android:actionBarItemBackground">@drawable/selectable_background_textly</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu.Textly</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.Textly</item>
+        <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Textly</item>
+        <item name="android:actionDropDownStyle">@style/DropDownNav.Textly</item>
+        <item name="android:actionBarStyle">@style/ActionBar.Solid.Textly</item>
+        <item name="android:actionModeBackground">@drawable/cab_background_top_textly</item>
+        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_textly</item>
+        <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Textly</item>
+        <item name="android:editTextBackground">@drawable/apptheme_edit_text_holo_light</item>
+        <item name="android:imageButtonStyle">@style/ImageButtonAppTheme</item>
+        <item name="android:listViewStyle">@style/Theme.Textly.LightBlueBackground</item>
+        <item name="android:gridViewStyle">@style/Theme.Textly.LightBlueBackground</item>
+    </style>
+    
+    
+     
+     
+    
+    <style name="Theme.Textly.LightBlueBackground">
+        <item name="android:background">@color/light_blue_background</item>
+        <item name="android:divider">@null</item>
+    </style>
+   
+
+    <style name="ActionBar.Solid.Textly" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
+        <item name="android:background">@drawable/ab_solid_textly</item>
+        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_textly</item>
+        <item name="android:backgroundSplit">@drawable/ab_bottom_solid_textly</item>
+        <item name="android:progressBarStyle">@style/ProgressBar.Textly</item>
+    </style>
+
+    <style name="ActionBar.Transparent.Textly" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@drawable/ab_transparent_textly</item>
+        <item name="android:progressBarStyle">@style/ProgressBar.Textly</item>
+    </style>
+
+    <style name="PopupMenu.Textly" parent="@android:style/Widget.Holo.Light.ListPopupWindow">
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_textly</item>
+    </style>
+
+    <style name="DropDownListView.Textly" parent="@android:style/Widget.Holo.Light.ListView.DropDown">
+        <item name="android:listSelector">@drawable/selectable_background_textly</item>
+    </style>
+
+    <style name="ActionBarTabStyle.Textly" parent="@android:style/Widget.Holo.Light.ActionBar.TabView">
+        <item name="android:background">@drawable/tab_indicator_ab_textly</item>
+    </style>
+
+    <style name="DropDownNav.Textly" parent="@android:style/Widget.Holo.Light.Spinner">
+        <item name="android:background">@drawable/spinner_background_ab_textly</item>
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_textly</item>
+        <item name="android:dropDownSelector">@drawable/selectable_background_textly</item>
+    </style>
+
+    <style name="ProgressBar.Textly" parent="@android:style/Widget.Holo.Light.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_horizontal_textly</item>
+    </style>
+
+    <style name="ActionButton.CloseMode.Textly" parent="@android:style/Widget.Holo.Light.ActionButton.CloseMode">
+        <item name="android:background">@drawable/btn_cab_done_textly</item>
+    </style>
+
+    <!-- this style is only referenced in a Light.DarkActionBar based theme -->
+    <style name="Theme.Textly.Widget" parent="@android:style/Theme.Holo">
+        <item name="android:popupMenuStyle">@style/PopupMenu.Textly</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.Textly</item>
+    </style>
+
+    <style name="ImageButtonAppTheme" parent="android:Widget.Holo.Light.ImageButton">
+        <item name="android:background">@drawable/apptheme_btn_default_holo_light</item>
+    </style>
+
+    <style name="AuthBackgroundImage">
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:src">@drawable/background</item>
+    </style>
+
+    <style name="AuthTitle" parent="android:Widget.TextView">
+        <item name="android:layout_marginTop">32dp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">60sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:text">@string/app_name</item>
+    </style>
+
+    <style name="styleName">
+        <item name="android:background">@android:color/white</item>
+        <item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginTop">@dimen/login_vertical_margin</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingBottom">@dimen/login_vertical_margin</item>
+        <item name="android:paddingLeft">@dimen/login_horizontal_padding</item>
+        <item name="android:paddingRight">@dimen/login_horizontal_padding</item>
+        <item name="android:paddingTop">@dimen/login_vertical_margin</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_below">@id/title</item>
+    </style>
+
+    <style name="AuthEditText" parent="android:Widget.Holo.Light.EditText">
+        <item name="android:ems">10</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColorHint">@color/light_gray</item>
+    </style>
+
+    <style name="AuthButton" parent="android:Widget.Button">
+        <item name="android:background">@drawable/button_custom</item>
+        <item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/login_button_label</item>
+    </style>
+
+    <style name="GridImage">
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentRight">true</item>
+       <item name="android:layout_alignParentTop">true</item>
+    </style>
+</resources>
