@@ -1,0 +1,28 @@
+package com.jordanpeterson.textly;
+
+import android.app.Application;
+
+import com.jordanpeterson.textly.ui.MainActivity;
+import com.jordanpeterson.textly.utils.ParseConstants;
+import com.parse.Parse;
+import com.parse.ParseInstallation;
+import com.parse.ParseUser;
+import com.parse.PushService;
+
+public class TextlyApplication extends Application {
+	
+	@Override
+	public void onCreate() { 
+		super.onCreate();
+		Parse.initialize(this, "VdZyTBoSH6BdPEialgpibPwlEWxJQAHcpoAeEoOy", "rSRHYBGgVFLPQdBwcdAWPdHe5ABIsgWoDaCHMsoW");
+	    
+	    PushService.setDefaultPushCallback(this, MainActivity.class);
+	    ParseInstallation.getCurrentInstallation().saveInBackground();
+	}
+	
+	public static void updateParseInstallation(ParseUser user) {
+		ParseInstallation installation = ParseInstallation.getCurrentInstallation();
+		installation.put(ParseConstants.KEY_USER_ID, user.getObjectId());
+		installation.saveInBackground();
+	}
+}
