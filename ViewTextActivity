@@ -1,0 +1,27 @@
+package com.jordanpeterson.textly.ui;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.TextView;
+import com.jordanpeterson.textly.R;
+import com.jordanpeterson.textly.utils.ParseConstants;
+
+public class ViewTextActivity extends Activity {
+protected String mMessageText;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_view_text);
+		TextView viewTextView = (TextView) findViewById(R.id.viewTextView);
+		mMessageText = getIntent().getStringExtra(ParseConstants.KEY_TEXT);
+		viewTextView.setText(mMessageText);
+	    
+	}
+     
+	
+		
+		
+		
+	}
+	
