@@ -21,7 +21,6 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -195,11 +194,11 @@ public class MainActivity extends FragmentActivity implements
 
 		// TODO Shortcut to onCreate()
 
-		mDrawerList = (ListView) findViewById(R.id.navList);
-		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+//		mDrawerList = (ListView) findViewById(R.id.navList);
+//		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mActivityTitle = getTitle().toString();
 
-		addDrawerItems();
+//		addDrawerItems();
 //		setupDrawer();
 
 //		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -251,23 +250,23 @@ public class MainActivity extends FragmentActivity implements
 
 	}
 
-	private void addDrawerItems() {
-		String[] osArray = { "Home", "Inbox", "Credits", "GIFS/Stickers", "Settings" };
-		mAdapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, osArray);
-		mDrawerList.setAdapter(mAdapter);
-
-		mDrawerList
-				.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-					@Override
-					public void onItemClick(AdapterView<?> parent, View view,
-							int position, long id) {
-						Toast.makeText(MainActivity.this,
-								"Time for an upgrade!", Toast.LENGTH_SHORT)
-								.show();
-					}
-				});
-	}
+//	private void addDrawerItems() {
+//		String[] osArray = { "Home", "Inbox", "Credits", "GIFS/Stickers", "Settings" };
+//		mAdapter = new ArrayAdapter<String>(this,
+//				android.R.layout.simple_list_item_1, osArray);
+//		mDrawerList.setAdapter(mAdapter);
+//
+//		mDrawerList
+//				.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//					@Override
+//					public void onItemClick(AdapterView<?> parent, View view,
+//							int position, long id) {
+//						Toast.makeText(MainActivity.this,
+//								"Time for an upgrade!", Toast.LENGTH_SHORT)
+//								.show();
+//					}
+//				});
+//	}
 
 //	private void setupDrawer() {
 //		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
