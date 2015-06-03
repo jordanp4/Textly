@@ -287,10 +287,13 @@ public class MainActivity extends FragmentActivity implements
 							Toast.makeText(MainActivity.this, "Stickers are not available yet! Check Back Later.", Toast.LENGTH_LONG).show();
                              break;
                              
-						case 4:
-							Toast.makeText(MainActivity.this, "Settings are not available yet! Check back later.", Toast.LENGTH_LONG).show();
+					case 4:
+							Toast.makeText(MainActivity.this, "Memes are not available yet! Check back later.", Toast.LENGTH_LONG).show();
+							break;
 							
-						}
+						case 5:
+							Toast.makeText(MainActivity.this, "Settings are not available yet! Check back later.", Toast.LENGTH_LONG).show();
+							break;
 
 					}
 					}
