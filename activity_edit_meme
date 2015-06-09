@@ -2,14 +2,77 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_blue_background"
     tools:context="com.jordanpeterson.textly.ui.EditMemeActivity" >
 
-  <ImageView
+    <ImageView
         android:id="@+id/memeImageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:scaleType="fitCenter" />
+        android:scaleType="fitEnd" />
+
+    <EditText
+        android:id="@+id/memeTopEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/white"
+        android:ems="10"
+        android:hint="Write Top Line Here" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/topTextview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/generateMemeButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:textColor="@android:color/white"
+        android:textSize="38sp"
+         />
+
+    <TextView
+        android:id="@+id/bottomTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/topTextview"
+        android:layout_alignParentBottom="true"
+        android:textColor="@android:color/white"
+        android:textSize="38sp"
+         />
+
+    <EditText
+        android:id="@+id/memeBottomEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/memeTopEditText"
+        android:layout_marginTop="17dp"
+        android:background="@android:color/white"
+        android:ems="10"
+        android:hint="Write Bottom Line Here" />
+
+    <Button
+        android:id="@+id/generateMemeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/memeBottomEditText"
+        android:text="Generate Meme" />
+
+    <Button
+        android:id="@+id/sendMeme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/generateMemeButton"
+        android:layout_alignBottom="@+id/generateMemeButton"
+        android:layout_alignLeft="@+id/topTextview"
+        android:text="Send Meme" />
 
 </RelativeLayout>
