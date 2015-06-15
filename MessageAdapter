@@ -62,6 +62,10 @@ public class MessageAdapter extends ArrayAdapter<ParseObject> {
 			holder.iconImageView.setImageResource(R.drawable.ic_action_content_markunread);
 		}
 		
+		else if (message.getString(ParseConstants.KEY_FILE_TYPE).equals(ParseConstants.TYPE_MEME)) {
+			holder.iconImageView.setImageResource(R.drawable.ic_action_editor_insert_emoticon);
+		}
+		
 		else {
 			holder.iconImageView.setImageResource(R.drawable.ic_video);
 		}
