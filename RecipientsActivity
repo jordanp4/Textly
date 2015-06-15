@@ -5,6 +5,8 @@ import java.util.List;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -18,11 +20,11 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jordanpeterson.textly.R;
+import com.jordanpeterson.textly.adapters.ImageAdapter;
 import com.jordanpeterson.textly.adapters.UserAdapter;
 import com.jordanpeterson.textly.utils.FileHelper;
 import com.jordanpeterson.textly.utils.ParseConstants;
@@ -49,6 +51,9 @@ public class RecipientsActivity extends Activity {
 	protected String mFileType;
 	protected GridView mGridView;
 	protected String mTextMessage;
+	protected int mMemeImage;
+	protected String mTextTop;
+	protected String mTextBottom;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,11 +73,17 @@ public class RecipientsActivity extends Activity {
 
 		mFileType = getIntent().getExtras().getString(
 				ParseConstants.KEY_FILE_TYPE);
-		// TODO Text messaging part starts here.
 		if (mFileType.equals(ParseConstants.TYPE_TEXT_MESSAGE)) {
 			mTextMessage = getIntent().getExtras().getString(
 					ParseConstants.KEY_TEXT);
-		} else {
+		} 
+		
+		else if(mFileType.equals(ParseConstants.TYPE_MEME)) {
+			mMemeImage = getIntent().getExtras().getInt(ParseConstants.KEY_MEME_IMAGE);
+			mTextTop = getIntent().getExtras().getString(ParseConstants.KEY_MEME_TOP_TEXT);
+			mTextBottom = getIntent().getExtras().getString(ParseConstants.KEY_MEME_BOTTOM_TEXT);
+		}
+		else {
 			mMediaUri = getIntent().getData();
 		}
 	}
@@ -183,7 +194,13 @@ public class RecipientsActivity extends Activity {
 		// TODO Create Message() Method Need to be fixed for text messaging.
 		if (mFileType.equals(ParseConstants.TYPE_TEXT_MESSAGE)) {
 			message.put(ParseConstants.KEY_TEXT, mTextMessage);
-		} else {
+		}
+		else if (mFileType.equals(ParseConstants.TYPE_MEME)) {
+			message.put(ParseConstants.KEY_MEME_IMAGE, mMemeImage);
+			message.put(ParseConstants.KEY_MEME_TOP_TEXT, mTextTop);
+			message.put(ParseConstants.KEY_MEME_BOTTOM_TEXT, mTextBottom);
+		}
+		else {
 			// Process and attach media file
 			byte[] fileBytes = FileHelper.getByteArrayFromFile(this, mMediaUri);
 
