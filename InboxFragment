@@ -16,6 +16,9 @@ import android.widget.ListView;
 
 import com.jordanpeterson.textly.R;
 import com.jordanpeterson.textly.adapters.MessageAdapter;
+import com.jordanpeterson.textly.messages.ViewImageActivity;
+import com.jordanpeterson.textly.messages.ViewMemeActivity;
+import com.jordanpeterson.textly.messages.ViewTextActivity;
 import com.jordanpeterson.textly.utils.ParseConstants;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -28,6 +31,7 @@ public class InboxFragment extends ListFragment {
 
 	protected List<ParseObject> mMessages;
 	protected SwipeRefreshLayout mSwipeRefreshLayout;
+	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -100,6 +104,7 @@ public class InboxFragment extends ListFragment {
 
         ParseObject message = mMessages.get(position);
         String messageType = message.getString(ParseConstants.KEY_FILE_TYPE);
+       
 
 
         switch (messageType) {
@@ -131,6 +136,16 @@ public class InboxFragment extends ListFragment {
                 videoIntent.setDataAndType(videoFileUri, "video/*");
                 startActivity(videoIntent);
                 break;
+                
+            case ParseConstants.TYPE_MEME:
+            	String memeTopText = message.getString(ParseConstants.KEY_MEME_TOP_TEXT);
+            	String memeBottomText = message.getString(ParseConstants.KEY_MEME_BOTTOM_TEXT);
+            	Intent memeIntent = new Intent(getActivity(), ViewMemeActivity.class);
+            	memeIntent.putExtra(ParseConstants.KEY_MEME_IMAGE, position);
+            	memeIntent.putExtra(ParseConstants.KEY_MEME_TOP_TEXT, memeTopText);
+            	memeIntent.putExtra(ParseConstants.KEY_MEME_BOTTOM_TEXT, memeBottomText);
+            	startActivity(memeIntent);
+            	break;
         }
 
 
