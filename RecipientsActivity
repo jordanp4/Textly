@@ -5,8 +5,6 @@ import java.util.List;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Intent;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -24,7 +22,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jordanpeterson.textly.R;
-import com.jordanpeterson.textly.adapters.ImageAdapter;
 import com.jordanpeterson.textly.adapters.UserAdapter;
 import com.jordanpeterson.textly.utils.FileHelper;
 import com.jordanpeterson.textly.utils.ParseConstants;
@@ -69,7 +66,8 @@ public class RecipientsActivity extends Activity {
 
 		TextView emptyTextView = (TextView) findViewById(android.R.id.empty);
 		mGridView.setEmptyView(emptyTextView);
-
+        
+	
 
 		mFileType = getIntent().getExtras().getString(
 				ParseConstants.KEY_FILE_TYPE);
@@ -79,7 +77,10 @@ public class RecipientsActivity extends Activity {
 		} 
 		
 		else if(mFileType.equals(ParseConstants.TYPE_MEME)) {
-			mMemeImage = getIntent().getExtras().getInt(ParseConstants.KEY_MEME_IMAGE);
+			//TODO Shortcut!
+			
+			
+	        mMemeImage = getIntent().getExtras().getInt(ParseConstants.KEY_MEME_IMAGE);
 			mTextTop = getIntent().getExtras().getString(ParseConstants.KEY_MEME_TOP_TEXT);
 			mTextBottom = getIntent().getExtras().getString(ParseConstants.KEY_MEME_BOTTOM_TEXT);
 		}
@@ -192,6 +193,8 @@ public class RecipientsActivity extends Activity {
 		message.put(ParseConstants.KEY_RECIPIENT_IDS, getRecipientIds());
 		message.put(ParseConstants.KEY_FILE_TYPE, mFileType);
 		// TODO Create Message() Method Need to be fixed for text messaging.
+		
+        
 		if (mFileType.equals(ParseConstants.TYPE_TEXT_MESSAGE)) {
 			message.put(ParseConstants.KEY_TEXT, mTextMessage);
 		}
@@ -204,8 +207,7 @@ public class RecipientsActivity extends Activity {
 			// Process and attach media file
 			byte[] fileBytes = FileHelper.getByteArrayFromFile(this, mMediaUri);
 
-			// byte[] fileBytes = FileHelper.getByteArrayFromFile(this,
-			// mMediaUri);
+			
 
 			if (fileBytes == null) {
 				return null;
