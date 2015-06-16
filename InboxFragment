@@ -12,9 +12,11 @@ import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.jordanpeterson.textly.R;
+import com.jordanpeterson.textly.adapters.ImageAdapter;
 import com.jordanpeterson.textly.adapters.MessageAdapter;
 import com.jordanpeterson.textly.messages.ViewImageActivity;
 import com.jordanpeterson.textly.messages.ViewMemeActivity;
@@ -31,6 +33,7 @@ public class InboxFragment extends ListFragment {
 
 	protected List<ParseObject> mMessages;
 	protected SwipeRefreshLayout mSwipeRefreshLayout;
+	protected int mMemeImage;
 	
 
 	@Override
@@ -105,7 +108,8 @@ public class InboxFragment extends ListFragment {
         ParseObject message = mMessages.get(position);
         String messageType = message.getString(ParseConstants.KEY_FILE_TYPE);
        
-
+        
+        
 
         switch (messageType) {
             case ParseConstants.TYPE_TEXT_MESSAGE:
@@ -140,8 +144,9 @@ public class InboxFragment extends ListFragment {
             case ParseConstants.TYPE_MEME:
             	String memeTopText = message.getString(ParseConstants.KEY_MEME_TOP_TEXT);
             	String memeBottomText = message.getString(ParseConstants.KEY_MEME_BOTTOM_TEXT);
+            	mMemeImage = message.getInt(ParseConstants.KEY_MEME_IMAGE);
             	Intent memeIntent = new Intent(getActivity(), ViewMemeActivity.class);
-            	memeIntent.putExtra(ParseConstants.KEY_MEME_IMAGE, position);
+            	memeIntent.putExtra(ParseConstants.KEY_MEME_IMAGE, mMemeImage);
             	memeIntent.putExtra(ParseConstants.KEY_MEME_TOP_TEXT, memeTopText);
             	memeIntent.putExtra(ParseConstants.KEY_MEME_BOTTOM_TEXT, memeBottomText);
             	startActivity(memeIntent);
