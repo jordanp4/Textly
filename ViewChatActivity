@@ -1,0 +1,121 @@
+package com.jordanpeterson.textly.messages;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.os.Message;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+
+import com.immersion.hapticmediasdk.utils.Log;
+import com.jordanpeterson.textly.R;
+import com.jordanpeterson.textly.adapters.ChatListAdapter;
+import com.parse.FindCallback;
+import com.parse.LogInCallback;
+import com.parse.ParseAnonymousUtils;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
+
+public class ViewChatActivity extends Activity {
+	private static final String TAG = ViewChatActivity.class.getName();
+	private static final int MAX_CHAT_MESSAGES_TO_SHOW = 50;
+	public static final String USER_ID_KEY = "userId";
+	private static String sUserId;
+	protected ListView mChatList;
+	protected EditText mRespondEditChat;
+	protected Button mRespondSend;
+	private ArrayList<ChatMessage> mMessages;
+	private ChatListAdapter mAdapter;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_view_chat);
+
+		if (ParseUser.getCurrentUser() != null) {
+			startWithCurrentUser();
+		} else {
+			login();
+		}
+	}
+
+	private void startWithCurrentUser() {
+		sUserId = ParseUser.getCurrentUser().getObjectId();
+		setupMessagePosting();
+	}
+
+	private void setupMessagePosting() {
+		mRespondEditChat = (EditText) findViewById(R.id.respondEditChat);
+		mRespondSend = (Button) findViewById(R.id.respondSendChat);
+		mChatList = (ListView) findViewById(R.id.ChatList);
+		mMessages = new ArrayList<ChatMessage>();
+		mAdapter = new ChatListAdapter(ViewChatActivity.this, sUserId,
+				mMessages);
+		mChatList.setAdapter(mAdapter);
+		mRespondSend.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				String body = mRespondEditChat.getText().toString();
+				// Use Message model to create new messages now
+				ChatMessage message = new ChatMessage();
+				message.setUserId(sUserId);
+				message.setBody(body);
+				message.saveInBackground(new SaveCallback() {
+					@Override
+					public void done(ParseException e) {
+						receiveMessage();
+					}
+
+					private void receiveMessage() {
+						ParseQuery<ChatMessage> query = ParseQuery
+								.getQuery(ChatMessage.class);
+						query.setLimit(MAX_CHAT_MESSAGES_TO_SHOW);
+						query.orderByAscending("createdAt");
+						query.findInBackground(new FindCallback<ChatMessage>() {
+							
+							@Override
+							public void done(List<ChatMessage> messages, ParseException e) {
+								if (e == null) {
+									mMessages.clear();
+									mMessages.addAll(messages);
+									mAdapter.notifyDataSetChanged();
+									mChatList.invalidate();
+									
+								}
+								else {
+									Log.d("message", "Error: " + e.getMessage());
+								}
+							}
+						});
+
+					}
+				});
+				mRespondEditChat.setText("");
+			}
+		});
+	}
+
+	private void login() {
+		ParseAnonymousUtils.logIn(new LogInCallback() {
+
+			@Override
+			public void done(ParseUser user, ParseException e) {
+				if (e != null) {
+					Log.d(TAG, "Anonymous login failed: " + e.toString());
+				} else {
+					startWithCurrentUser();
+				}
+
+			}
+		});
+	}
+
+}
