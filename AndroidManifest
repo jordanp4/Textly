@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="14"
-        android:targetSdkVersion="19" />
+        android:targetSdkVersion="22" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -18,10 +18,16 @@
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
+    <uses-feature
+        android:name="android.hardware.microphone"
+        android:required="false" />
 
     <permission
         android:name="com.jordanpeterson.textly.permission.C2D_MESSAGE"
@@ -87,8 +93,7 @@
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
-        
-         <receiver
+        <receiver
             android:name="com.parse.GcmBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
@@ -128,7 +133,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".extras.MemeActivity"
+            android:name=".memes.MemeActivity"
             android:label="@string/title_activity_meme"
             android:parentActivityName="com.jordanpeterson.ui.MainActivity"
             android:screenOrientation="portrait" >
@@ -137,16 +142,16 @@
                 android:value="com.jordanpeterson.textly.ui.MainActivity" />
         </activity>
         <activity
-            android:name=".extras.EditMemeActivity"
+            android:name=".memes.EditMemeActivity"
             android:label="@string/title_activity_edit_meme"
-            android:parentActivityName=".extras.MemeActivity"
+            android:parentActivityName=".memes.MemeActivity"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.jordanpeterson.textly.ui.MemeActivity" />
         </activity>
         <activity
-            android:name=".extras.ViewMemeActivity"
+            android:name=".memes.ViewMemeActivity"
             android:label="@string/title_activity_view_meme"
             android:parentActivityName=".ui.MainActivity"
             android:screenOrientation="portrait" >
@@ -156,11 +161,8 @@
         </activity>
         <activity
             android:name=".ui.ResetPasswordActivity"
-            android:label="@string/title_activity_reset_password" >
-        </activity>
-        <activity
-            android:name=".chat.ListUsersActivity"
-            android:label="@string/title_list_users" >
+            android:label="@string/title_activity_reset_password"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".chat.ChatActivity"
@@ -171,12 +173,60 @@
                 android:value="com.jordanpeterson.textly.ui.MainActivity" />
         </activity>
         <activity
-            android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"
+            android:name=".ui.ProfileActivity"
+            android:label="@string/title_activity_profile"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".ui.RegisterExtraActivity"
+            android:label="@string/title_activity_register_extra"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".messages.ListUsersActivity"
+            android:label="@string/title_activity_list_users"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <service android:name=".messages.MessageService" >
+        </service>
+
+        <activity
+            android:name=".messages.MessagingActivity"
+            android:screenOrientation="unspecified" >
+        </activity>
+        <activity
+            android:name=".memes.MemeListActivity"
+            android:label="@string/title_activity_meme_list"
             android:parentActivityName=".ui.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.jordanpeterson.textly.ui.MainActivity" />
+        </activity>
+        <activity
+            android:name=".memes.EditPhoto"
+            android:label="@string/title_activity_edit_photo" >
+        </activity>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="1ee61344f12b0a5917fa60ad6e7ea5799e1cf8ef" />
+
+        <activity
+            android:name=".feed.FeedActivity"
+            android:label="@string/title_activity_feed" >
+        </activity>
+        <activity
+            android:name=".feed.AddLinkActivity"
+            android:label="@string/title_activity_add_link"
+            android:parentActivityName=".ui.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.jordanpeterson.textly.ui.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.jordanpeterson.textly.feed.FeedMainActivity"
+            android:label="@string/title_activity_feed_main" >
         </activity>
     </application>
 
