@@ -1,0 +1,50 @@
+package com.jordanpeterson.textly.feed;
+
+import com.jordanpeterson.textly.R;
+import com.jordanpeterson.textly.R.id;
+import com.jordanpeterson.textly.R.layout;
+import com.jordanpeterson.textly.utils.ParseConstants;
+import com.parse.ParseObject;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+public class AddLinkActivity extends Activity {
+	
+	protected EditText mUrlField;
+	protected EditText mNotesField;
+	protected Button mSaveButton;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_add_link);
+		
+		mUrlField = (EditText)findViewById(R.id.urlField);
+		mNotesField = (EditText)findViewById(R.id.noteField);
+		mSaveButton = (Button)findViewById(R.id.saveButton);
+		mSaveButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				String url = mUrlField.getText().toString();
+				String notes = mNotesField.getText().toString();
+				if (!url.equals("")) {
+					//Save Post ParseObject
+					ParseObject post = new ParseObject(ParseConstants.POSTS);
+					post.put(ParseConstants.KEY_URL, url);
+					post.put(ParseConstants.KEY_NOTES, notes);
+					post.saveInBackground();
+					finish();
+					
+				}
+				
+			}
+		});
+	}
+
+	
+}
